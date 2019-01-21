@@ -54,6 +54,32 @@ func Test_ContainsValueStringInt_WhenMapEmpty_ReturnsFalse(t *testing.T) {
 	assert.False(t, result)
 }
 
+func Test_GetKeysStringInt_WhenKeys_ReturnsKeys(t *testing.T) {
+	m := map[string]int{"a": 1, "b": 2, "c": 3}
+
+	values := GetKeysStringInt(m)
+
+	expected := []string{"a", "b", "c"}
+
+	assert.Equal(t, len(expected), len(values))
+
+	for _, v := range expected {
+		assert.Contains(t, values, v)
+	}
+
+	for _, v := range values {
+		assert.Contains(t, expected, v)
+	}
+}
+
+func Test_GetKeysStringInt_WhenEmpty_ReturnsEmpty(t *testing.T) {
+	m := map[string]int{}
+
+	values := GetKeysStringInt(m)
+
+	assert.Equal(t, []string{}, values)
+}
+
 func Test_GetValuesStringInt_WhenValues_ReturnsValues(t *testing.T) {
 	m := map[string]int{"a": 1, "b": 2, "c": 3}
 
