@@ -12,7 +12,10 @@ const (
 
 func main() {
 	masterTemplateContent := getMasterTemplateContent()
-	fmt.Println(masterTemplateContent)
+	err := ioutil.WriteFile("mastertemplate.go", []byte(masterTemplateContent), 0644)
+	if err != nil {
+		panic(err)
+	}
 }
 
 func getMasterTemplateContent() string {
