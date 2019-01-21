@@ -79,3 +79,33 @@ func Test_GetValuesStringInt_WhenEmpty_ReturnsEmpty(t *testing.T) {
 
 	assert.Equal(t, []int{}, values)
 }
+
+func Test_CopyStringInt_WhenValues_ReturnsDeepCopy(t *testing.T) {
+	m := map[string]int{"a": 1, "b": 2, "c": 3}
+
+	deepCopyMap := CopyStringInt(m)
+
+	assert.Equal(t, len(m), len(deepCopyMap))
+
+	for k, v := range m {
+		checkValue, ok := deepCopyMap[k]
+		assert.True(t, ok)
+		assert.Equal(t, v, checkValue)
+	}
+
+	for k, v := range deepCopyMap {
+		checkValue, ok := m[k]
+		assert.True(t, ok)
+		assert.Equal(t, v, checkValue)
+	}
+}
+
+func Test_CopyStringInt_WhenEmpty_ReturnsEmptyDeepCopy(t *testing.T) {
+	m := map[string]int{}
+
+	deepCopyMap := CopyStringInt(m)
+
+	assert.Equal(t, len(m), len(deepCopyMap))
+	assert.Equal(t, len(m), 0)
+	assert.Equal(t, len(deepCopyMap), 0)
+}
