@@ -11,8 +11,15 @@ const (
 )
 
 func main() {
+	masterTemplateContent := getMasterTemplateContent()
+	fmt.Println(masterTemplateContent)
+}
+
+func getMasterTemplateContent() string {
 	masterTemplateString := getMasterTemplateString()
-	fmt.Println(masterTemplateString)
+	masterTemplate := "package mastertemplate\n\nconst (\n\t"
+	masterTemplate += fmt.Sprintf("String = `%s`", masterTemplateString)
+	return masterTemplate
 }
 
 func getMasterTemplateString() string {
