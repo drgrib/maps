@@ -25,17 +25,21 @@ func NewMapTemplate(packageStr, keytype, valuetype string) MapTemplate {
 		KeySuffix:   newSuffix(keytype),
 		ValueSuffix: newSuffix(valuetype),
 	}
+
 	return mapTemplate
 }
 
 func newSuffix(typestring string) string {
 	base := typestring
+
 	if strings.HasPrefix(base, "*") {
 		base = base[1:]
 	}
+
 	if strings.HasSuffix(base, "{}") {
 		base = base[:len(base)-2]
 	}
+
 	return strings.Title(base)
 }
 
