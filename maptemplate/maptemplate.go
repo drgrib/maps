@@ -22,10 +22,21 @@ func NewMapTemplate(packageStr, keytype, valuetype string) MapTemplate {
 		Package:     packageStr,
 		KeyType:     keytype,
 		ValueType:   valuetype,
-		KeySuffix:   strings.Title(keytype),
-		ValueSuffix: strings.Title(valuetype),
+		KeySuffix:   newSuffix(keytype),
+		ValueSuffix: newSuffix(valuetype),
 	}
 	return mapTemplate
+}
+
+func newSuffix(typestring string) string {
+	base := typestring
+	if strings.HasPrefix(base, "*") {
+		base = base[1:]
+	}
+	if strings.HasSuffix(base, "{}") {
+		base = base[:len(base)-2]
+	}
+	return strings.Title(base)
 }
 
 func (mapTemplate MapTemplate) Parse() (string, error) {

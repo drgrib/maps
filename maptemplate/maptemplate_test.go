@@ -8,6 +8,19 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
+func Test_newSuffix_WhenPointer_MatchesExpected(t *testing.T) {
+	suffix := newSuffix("*SomeType")
+	assert.Equal(t, "SomeType", suffix)
+
+	suffix = newSuffix("*int")
+	assert.Equal(t, "Int", suffix)
+}
+
+func Test_newSuffix_WhenInterface_MatchesExpected(t *testing.T) {
+	suffix := newSuffix("interface{}")
+	assert.Equal(t, "Interface", suffix)
+}
+
 func Test_Parse_WhenStringInt_MatchesExpected(t *testing.T) {
 	mapTemplate := NewMapTemplate("maptemplatetest", "string", "int")
 
