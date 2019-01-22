@@ -48,3 +48,4 @@ func Copy{{.KeySuffix}}{{.ValueSuffix}}(m map[{{.KeyType}}]{{.ValueType}}) map[{
 	return copyMap
 }
 `
+)
