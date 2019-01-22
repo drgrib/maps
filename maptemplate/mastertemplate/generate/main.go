@@ -21,7 +21,7 @@ func main() {
 func getMasterTemplateContent() string {
 	masterTemplateString := getMasterTemplateString()
 	masterTemplate := "package mastertemplate\n\nconst (\n\t"
-	masterTemplate += fmt.Sprintf("String = `%s`\n)", masterTemplateString)
+	masterTemplate += fmt.Sprintf("String = `%s`\n)\n", masterTemplateString)
 	return masterTemplate
 }
 
