@@ -11,7 +11,7 @@ import (
 
 func main() {
 	types := flag.String("types", "", "key:value type pair (required)")
-	suffix := flag.String("suffix", "", "custom function suffix (optional)")
+	suffix := flag.String("suffix", "*", "custom function suffix (optional)")
 	output := flag.String("output", "", "target file name (optional)")
 	packageName := flag.String("package", "", "target package name (optional)")
 	flag.Parse()
@@ -25,7 +25,7 @@ func main() {
 		exitWithError(err.Error())
 	}
 
-	if *suffix != "" {
+	if *suffix != "*" {
 		mapFile.MapTemplate.KeySuffix = *suffix
 		mapFile.MapTemplate.ValueSuffix = ""
 	}
