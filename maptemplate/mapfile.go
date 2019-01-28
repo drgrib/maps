@@ -1,15 +1,61 @@
 package maptemplate
 
 import (
+	"fmt"
 	"io/ioutil"
 	"os"
 	"path/filepath"
 	"regexp"
+	"strings"
 )
 
 type MapFile struct {
-	Name        string
+	FileName    string
 	MapTemplate MapTemplate
+}
+
+func NewMapFile(keytype, valuetype string) (*MapFile, error) {
+	packageName, err := inferPackage()
+	if err != nil {
+		return nil, err
+	}
+
+	mapTemplate := NewMapTemplate(packageName, keytype, valuetype)
+	fileName := getDefaultFilename(mapTemplate)
+
+	mapFile := MapFile{
+		FileName:    fileName,
+		MapTemplate: mapTemplate,
+	}
+
+	return &mapFile, nil
+}
+
+func getDefaultFilename(mapTemplate MapTemplate) string {
+	return fmt.Sprintf("map_%s_%s.go", strings.ToLower(mapTemplate.KeySuffix), strings.ToLower(mapTemplate.ValueSuffix))
+}
+
+func inferPackage() (string, error) {
+	goFiles, err := getWdGoFiles()
+	if err != nil {
+		return "", err
+	}
+
+	if len(goFiles) == 0 {
+		return getCurrentDir()
+	}
+
+	firstGoFilePath := goFiles[0]
+	packageName, err := getFilePackage(firstGoFilePath)
+	if err != nil {
+		return "", err
+	}
+
+	if packageName == "" {
+		return getCurrentDir()
+	}
+
+	return packageName, nil
 }
 
 func getCurrentDir() (string, error) {
@@ -49,27 +95,4 @@ func getFilePackage(p string) (string, error) {
 	}
 
 	return matches[1], nil
-}
-
-func inferPackage() (string, error) {
-	goFiles, err := getWdGoFiles()
-	if err != nil {
-		return "", err
-	}
-
-	if len(goFiles) == 0 {
-		return getCurrentDir()
-	}
-
-	firstGoFilePath := goFiles[0]
-	packageName, err := getFilePackage(firstGoFilePath)
-	if err != nil {
-		return "", err
-	}
-
-	if packageName == "" {
-		return getCurrentDir()
-	}
-
-	return packageName, nil
 }

@@ -6,6 +6,24 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
+func Test_NewMapFile_WhenCalled_ReturnsCorrectMapFile(t *testing.T) {
+	keytype := "string"
+	valuetype := "*DerivedType"
+	mapFile, err := NewMapFile(keytype, valuetype)
+	assert.Nil(t, err)
+
+	assert.Equal(t, "map_string_derivedtype.go", mapFile.FileName)
+	assert.Equal(t, "maptemplate", mapFile.MapTemplate.Package)
+	assert.Equal(t, keytype, mapFile.MapTemplate.KeyType)
+	assert.Equal(t, valuetype, mapFile.MapTemplate.ValueType)
+	assert.Equal(t, "String", mapFile.MapTemplate.KeySuffix)
+	assert.Equal(t, "DerivedType", mapFile.MapTemplate.ValueSuffix)
+
+	parsed, err := mapFile.MapTemplate.Parse()
+	assert.Nil(t, err)
+	assert.NotEmpty(t, parsed)
+}
+
 func Test_getCurrentDir_WhenCalled_ReturnsDir(t *testing.T) {
 	dir, err := getCurrentDir()
 	assert.Nil(t, err)
