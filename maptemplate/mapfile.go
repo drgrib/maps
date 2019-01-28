@@ -14,6 +14,20 @@ type MapFile struct {
 	MapTemplate MapTemplate
 }
 
+func (mapFile MapFile) Write() error {
+	content, err := mapFile.MapTemplate.Parse()
+	if err != nil {
+		return err
+	}
+
+	err = ioutil.WriteFile(mapFile.FileName, []byte(content), 0644)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func NewMapFile(keytype, valuetype string) (*MapFile, error) {
 	packageName, err := inferPackage()
 	if err != nil {
