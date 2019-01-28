@@ -1,4 +1,4 @@
-package main
+package main // import "github.com/drgrib/maps/cmd/mapper"
 
 import (
 	"flag"
