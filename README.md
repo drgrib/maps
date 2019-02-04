@@ -10,7 +10,7 @@ go get https://github.com/drgrib/maps
 This package provides type-safe implementations of "missing" `map` functions:
 
 - `ContainsKeyKV(map[ktype]vtype, k ktype) bool` - check if map contains key
-- `ContainsValueKV(map[ktype]vtype,v vtype) bool` - check if map contains value
+- `ContainsValueKV(map[ktype]vtype, v vtype) bool` - check if map contains value
 - `GetKeysKV(map[ktype]vtype) []ktype` - keys of a map
 - `GetValuesKV(map[ktype]vtype) []vtype` - values of a map
 - `CopyKV(map[ktype]vtype) map[ktype]vtype` - deep copy of a map
