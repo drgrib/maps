@@ -41,7 +41,7 @@ There are two ways to do this. One is by installing and calling the `mapper` too
 
 ## `mapper`
 
-Mapper can be installed using
+`mapper` can be installed using
 
 ``` bash
 go get -u github.com/drgrib/maps/cmd/mapper
