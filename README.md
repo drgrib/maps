@@ -111,4 +111,4 @@ func CopyStringCustomValueType(m map[string]CustomType) map[string]CustomType {
 ```
 
 # About Generics
-If generics are implemented for Go 2.0, these functions can be covered by a single file, without the need for the `mapper` tool and its underlying packages. Until then, there is this package.
+If generics are implemented for Go 2.0, these functions can be covered by a single file, without the need for the `mapper` tool and its underlying generation packages. Until then, there is this package.
