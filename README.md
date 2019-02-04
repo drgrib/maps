@@ -2,6 +2,10 @@
 
 # Installation
 
+``` bash
+go get https://github.com/drgrib/maps
+```
+
 # Purpose
 This package provides type-safe implementations of "missing" `map` functions:
 
