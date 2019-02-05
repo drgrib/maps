@@ -9,9 +9,23 @@ import (
 
 func main() {
 	pairMap := map[string]bool{}
+	addIntKeyPairs(pairMap)
 	addStringKeyPairs(pairMap)
 	addBoolValuePairs(pairMap)
 	writePairs(pairMap)
+}
+
+func addIntKeyPairs(pairMap map[string]bool) {
+	keys := []string{"int"}
+	values := []string{
+		"string",
+		"int",
+		"float32",
+		"float64",
+		"bool",
+	}
+
+	addPairs(keys, values, pairMap)
 }
 
 func addStringKeyPairs(pairMap map[string]bool) {
