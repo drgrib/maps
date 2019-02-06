@@ -23,10 +23,11 @@ implemented with these patterns
 - `GetValuesKV(map[ktype]vtype) []vtype`
 - `CopyKV(map[ktype]vtype) map[ktype]vtype`
 
-where `K` and `V` are the key and value for common map types:
+where `K` and `V` are the key and value for maps combining Go primitives, including but not limited to:
 
 - `StringString`
 - `StringInt`
+- `IntString`
 - `StringFloat32`
 - `StringFloat64`
 - `Float32Bool`
