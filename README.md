@@ -23,7 +23,7 @@ implemented with these patterns
 - `GetValuesKV(map[ktype]vtype) []vtype`
 - `CopyKV(map[ktype]vtype) map[ktype]vtype`
 
-where `K` and `V` are the key and value for maps combining Go primitives, including but not limited to:
+where `K` and `V` are the key and value for maps combining Go basic types, including but not limited to:
 
 - `StringString`
 - `StringInt`
@@ -60,7 +60,7 @@ Or directly on the commandline with the same command:
 mapper -types string:CustomType
 ```
 
-Which, will generate the file `map_string_customvaluetype.go` that infers its `package` from surrounding `.go` files or the current folder name if no other files are found:
+Which will generate the file `map_string_customvaluetype.go` that infers its `package` from surrounding `.go` files or the current folder name if no other files are found:
 
 ``` go
 package maps
