@@ -60,17 +60,17 @@ Or directly on the commandline with the same command:
 mapper -types string:CustomType
 ```
 
-Which will generate the file `map_string_customvaluetype.go` that infers its `package` from surrounding `.go` files or the current folder name if no other files are found:
+Which will generate the file `map_string_customtype.go` that infers its `package` from surrounding `.go` files or the current folder name if no other files are found:
 
 ``` go
 package maps
 
-func ContainsKeyStringCustomValueType(m map[string]CustomType, k string) bool {
+func ContainsKeyStringCustomType(m map[string]CustomType, k string) bool {
 	_, ok := m[k]
 	return ok
 }
 
-func ContainsValueStringCustomValueType(m map[string]CustomType, v CustomType) bool {
+func ContainsValueStringCustomType(m map[string]CustomType, v CustomType) bool {
 	for _, mValue := range m {
 		if mValue == v {
 			return true
@@ -80,7 +80,7 @@ func ContainsValueStringCustomValueType(m map[string]CustomType, v CustomType) b
 	return false
 }
 
-func GetKeysStringCustomValueType(m map[string]CustomType) []string {
+func GetKeysStringCustomType(m map[string]CustomType) []string {
 	keys := []string{}
 
 	for k, _ := range m {
@@ -90,7 +90,7 @@ func GetKeysStringCustomValueType(m map[string]CustomType) []string {
 	return keys
 }
 
-func GetValuesStringCustomValueType(m map[string]CustomType) []CustomType {
+func GetValuesStringCustomType(m map[string]CustomType) []CustomType {
 	values := []CustomType{}
 
 	for _, v := range m {
@@ -100,7 +100,7 @@ func GetValuesStringCustomValueType(m map[string]CustomType) []CustomType {
 	return values
 }
 
-func CopyStringCustomValueType(m map[string]CustomType) map[string]CustomType {
+func CopyStringCustomType(m map[string]CustomType) map[string]CustomType {
 	copyMap := map[string]CustomType{}
 
 	for k, v := range m {
