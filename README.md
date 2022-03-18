@@ -1,5 +1,45 @@
 [![Build Status](https://travis-ci.com/drgrib/maps.svg?branch=master)](https://travis-ci.com/drgrib/maps)
 
+# Deprecated
+With the release of [Go 1.18](https://go.dev/blog/go1.18), this entire package can thankfully be replaced with the functions demonstrated below:
+
+``` go
+package main
+
+import (
+    "fmt"
+
+    "golang.org/x/exp/maps"
+)
+
+func ContainsKey[K, V comparable](m map[K]V, target V) bool {
+    for _, v := range m {
+        if v == target {
+            return true
+        }
+    }
+    return false
+}
+
+func main() {
+    m := map[string]int{
+        "a": 1,
+        "b": 2,
+        "c": 3,
+    }
+    fmt.Println(maps.Keys(m))
+    fmt.Println(maps.Values(m))
+
+    m2 := map[string]int{}
+    maps.Copy(m2, m)
+    fmt.Println(maps.Keys(m2))
+    fmt.Println(maps.Values(m2))
+
+    fmt.Println(ContainsKey(m2, 3))
+    fmt.Println(ContainsKey(m2, 4))
+}
+```
+
 # Installation
 
 ``` bash
